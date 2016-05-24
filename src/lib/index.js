@@ -30,10 +30,8 @@ export default class extends events {
   identify() {
     return new Promise((resolve, reject) => {
       let params = {model: this.model, id: this.id};
-      console.log(params);
       this.socket.emit('identify', params);
       this.socket.once('identify', (msg) => {
-        console.log(msg);
         if (!msg.error) {
           if (msg.new) {
             this.id = msg.id;
