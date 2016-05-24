@@ -1,5 +1,5 @@
 {
-  "name": "socket-io-iot",
+  "name": "socket.io-iot",
   "version": "0.0.0",
   "description": "My awesome module",
   "main": "lib/index.js",
@@ -7,20 +7,22 @@
     "lib/"
   ],
   "keywords": [
-    "node","module"
+    "node",
+    "module"
   ],
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/hougo13/socket-io-iot"
+    "url": "https://github.com/hougo13/socket.io-iot"
   },
   "scripts": {
+    "start": "npm run build && node ./test/example_server.js",
     "audit": "nsp check package",
     "build": "babel -d ./ ./src",
     "check": "npm run audit && npm outdated --depth 0",
     "coverage": "nyc --reporter=lcov --reporter=text --reporter=html npm test",
     "coveralls": "npm run coverage && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage",
-    "lint": "eslint src test",
+    "lint": "eslint src",
     "test": "ava --require babel-core/register",
     "validate": "npm run lint && npm test",
     "prepare": "npm run build && npm run validate && npm run check",
@@ -32,12 +34,14 @@
   "author": {
     "name": "Hougo13",
     "email": "hougo13@gmail.com",
-    "url": "https://github.com/hougo13"
+    "url": "https://github.com/Hougo13"
   },
   "pre-commit": [
     "validate"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "socket.io-client": "^1.4.6"
+  },
   "devDependencies": {
     "ava": "^0.14.0",
     "babel-cli": "^6.5.1",
