@@ -11,9 +11,9 @@ export default class extends events {
     this.connected = false;
     this.socket = io(url);
     this.socket.on('connect', () => {
-      this.identify().then(() => {
+      this.identify().then((msg) => {
         this.connected = true;
-        this.emit('connect');
+        this.emit('connect', msg);
       }).catch((err) => {
         this.emit('error', 'Identification error');
       });
@@ -37,7 +37,7 @@ export default class extends events {
             this.id = msg.id;
             this.emit('id', this.id);
           }
-          resolve();
+          resolve(msg);
         } else {
           reject();
         }
